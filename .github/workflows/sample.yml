@@ -1,0 +1,42 @@
+# workflow name
+name: github actions sample workflow
+
+# event definition
+on:
+  push:
+    branches: [main]
+
+# job definition
+jobs:
+  run-python:
+
+    # runner definition
+    runs-on: ubuntu-latest
+
+    # step definition
+    steps:
+      # checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # set up python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      # run python script
+      - name: Run python
+        run: |
+          python -c "print('Hello World')"
+
+  build:
+    # dependency definition
+    needs: run-python
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy application
+        run: |
+          echo "Deploying to production..."
