@@ -1,0 +1,110 @@
+{
+  "Comment": "Train Pipeline StateMachine Definition",
+  "StartAt": "Train Pipeline",
+  "States": {
+    "Train Pipeline": {
+      "Type": "Parallel",
+      "Branches": [
+        {
+          "StartAt": "Train SGD Classifier",
+          "States": {
+            "Train SGD Classifier": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::ecs:runTask.sync",
+              "Parameters": {
+                "LaunchType": "FARGATE",
+                "Cluster": "${cluster_arn}",
+                "TaskDefinition": "${task_definition_arn}",
+                "Overrides": {
+                  "ContainerOverrides": [
+                    {
+                      "Name": "train",
+                      "Command": [
+                        "python",
+                        "src/train.py",
+                        "-m",
+                        "sgd_classifier_ctr",
+                        "-t",
+                        "2018-12-10 00:00:00"
+                      ]
+                    }
+                  ]
+                },
+                "NetworkConfiguration": {
+                  "AwsvpcConfiguration": {
+                    "AssignPublicIp": "ENABLED",
+                    "SecurityGroups": [
+                      "${security_group}"
+                    ],
+                    "Subnets": ${subnet_ids}
+                  }
+                }
+              },
+              "Next": "Update SGD Classifier Service"
+            },
+            "Update SGD Classifier Service": {
+              "Type": "Task",
+              "Parameters": {
+                "Cluster": "${cluster}",
+                "Service": "${main_service}",
+                "ForceNewDeployment": true
+              },
+              "Resource": "arn:aws:states:::aws-sdk:ecs:updateService",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Train LightGBM",
+          "States": {
+            "Train LightGBM": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::ecs:runTask.sync",
+              "Parameters": {
+                "LaunchType": "FARGATE",
+                "Cluster": "${cluster_arn}",
+                "TaskDefinition": "${task_definition_arn}",
+                "Overrides": {
+                  "ContainerOverrides": [
+                    {
+                      "Name": "train",
+                      "Command": [
+                        "python",
+                        "src/train.py",
+                        "-m",
+                        "lightgbm_ctr",
+                        "-t",
+                        "2018-12-10 00:00:00"
+                      ]
+                    }
+                  ]
+                },
+                "NetworkConfiguration": {
+                  "AwsvpcConfiguration": {
+                    "AssignPublicIp": "ENABLED",
+                    "SecurityGroups": [
+                      "${security_group}"
+                    ],
+                    "Subnets": ${subnet_ids}
+                  }
+                }
+              },
+              "Next": "Update LightGBM Service"
+            },
+            "Update LightGBM Service": {
+              "Type": "Task",
+              "Parameters": {
+                "Cluster": "${cluster}",
+                "Service": "${sub_service}",
+                "ForceNewDeployment": true
+              },
+              "Resource": "arn:aws:states:::aws-sdk:ecs:updateService",
+              "End": true
+            }
+          }
+        }
+      ],
+      "End": true
+    }
+  }
+}

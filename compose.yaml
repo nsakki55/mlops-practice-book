@@ -1,0 +1,25 @@
+services:
+  predictor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: predict-api
+    restart: always
+    command: uv run python src/predictor.py
+    environment:
+      - AWS_PROFILE
+      - MODEL_NAME
+      - MODEL_VERSION
+      - FEATURE_VERSION
+    ports:
+      - 8080:8080
+    volumes:
+      - ./src:/app/src
+      - ./artifact:/app/artifact
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthcheck"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 5s

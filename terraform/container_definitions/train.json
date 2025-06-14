@@ -1,0 +1,27 @@
+[
+    {
+        "name": "train",
+        "image": "${ecr_uri}:${image_tag}",
+        "cpu": 1024,
+        "memory": 2048,
+        "portMappings": [],
+        "essential": true,
+        "command": [
+            "python",
+            "src/train.py",
+            "-m",
+            "${model_name}",
+            "-t",
+            "${train_datetime_ub}"
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-create-group": "true",
+                "awslogs-group": "/mlops/ecs/train",
+                "awslogs-stream-prefix": "ecs",
+                "awslogs-region": "ap-northeast-1"
+            }
+        }
+    }
+]
