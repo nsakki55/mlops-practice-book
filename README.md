@@ -106,4 +106,4 @@ help                    Show options
 
 
 ## お問い合わせ
-コードに関するお問い合わせは本レポジトリの[Issues](https://github.com/nsakki55/mlops-practice-book/issues)を作成してください。
+コードに関するお問い合わせは本レポジトリの[Discussions](https://github.com/nsakki55/mlops-practice-book/discussions)にて受け付けています。
