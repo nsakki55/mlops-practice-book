@@ -24,6 +24,13 @@ Kaggleデータセットの[Context Ad Clicks Dataset](https://www.kaggle.com/da
 
 ## 事前準備
 
+**サンプルコードの取得**  
+```zsh
+$ git clone https://github.com/nsakki55/mlops-practice-book
+$ cd mlops-practice-book
+```
+
+
 **Docker**  
 参考: [Install Docker Desktop on Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
 
@@ -34,11 +41,18 @@ Docker version 28.0.4, build b8034c0
 ```
 
 **uv**  
-参考: [Installing uv](https://docs.astral.sh/uv/getting-started/installation/)
+参考: [Installing uv](https://docs.astral.sh/uv/getting-started/installation/)  
 
 ```zsh
 $ uv --version
 uv 0.6.12 (e4e03833f 2025-04-02)
+```
+
+本書はPython 3.12を使用します。  
+以下はuvでPythonをインストールする例です。
+```zsh
+$ uv python install 3.12
+$ uv python pin 3.12
 ```
 
 **Terraform**  
@@ -102,8 +116,8 @@ help                    Show options
 
 
 ## 正誤表
-本書の正誤表は本レポジトリの[Wiki](https://github.com/nsakki55/mlops-practice-book/wiki)で公開しています。
+本書の正誤表は[errata.md](https://github.com/nsakki55/mlops-practice-book/blob/main/errata.md)で公開しています。
 
 
 ## お問い合わせ
-コードに関するお問い合わせは本レポジトリの[Discussions](https://github.com/nsakki55/mlops-practice-book/discussions)にて受け付けています。
+コードに関するお問い合わせは本レポジトリの[Discussions](https://github.com/nsakki55/mlops-practice-book/discussions)で受け付けています。
