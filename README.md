@@ -1,1 +1,105 @@
-# mlops-practice-book
+# 「実践MLOps 作って理解する機械学習システムの構築と運用」
+
+本レポジトリはオーム社出版「実践MLOps 作って理解する機械学習システムの構築と運用」のサンプルコードです。
+
+| 項目 |                               |
+|------|-------------------------------|
+| 書籍 | 実践MLOps 作って理解する機械学習システムの構築と運用 |
+| URL | TODO: add url link            |
+| ISBN | TODO: add ISBN link           |
+| 正誤表 | TODO: add fixed record        |
+
+## 目次
+
+## 本書で作成する機械学習システム
+
+本書ではインターネット広告のクリック率予測をリアルタイムで行う機械学習システムをAWSで作成します。
+
+## データセット
+
+Kaggleデータセットの[Context Ad Clicks Dataset](https://www.kaggle.com/datasets/arashnic/ctrtest/data)を一部改変したデータセット使用しています。  
+データセットはdata.zipに格納されています。本書で使用するデータは3つのcsvファイルが含まれます。
+
+## 事前準備
+
+**Docker**  
+参考: [Install Docker Desktop on Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
+
+```zsh
+
+$ docker --version
+Docker version 28.0.4, build b8034c0
+```
+
+**uv**  
+参考: [Installing uv](https://docs.astral.sh/uv/getting-started/installation/)
+
+```zsh
+$ uv --version
+uv 0.6.12 (e4e03833f 2025-04-02)
+```
+
+**Terraform**  
+<details>
+<summary>asdfでのインストール例</summary>
+```zsh
+$ asdf plugin add terraform
+$ asdf install terraform 1.11.3
+$ asdf local terraform 1.11.3
+```
+</details>
+
+```zsh
+$ terraform --version
+Terraform v1.11.3
+on darwin_amd64
+```
+
+
+**AWS CLI**  
+<details>
+<summary>asdfでのインストール例</summary>
+```zsh
+$ asdf plugin add awscli
+$ asdf install awscli 2.27.35
+$ asdf local awscli 2.27.35 
+```
+</details>
+
+```zsh
+$ aws --version
+aws-cli/2.9.2 Python/3.9.11 Darwin/24.2.0 exe/x86_64 prompt/off
+```
+
+## 動作確認
+本書で実行するコマンドをMakefileにまとめています。
+```
+$ make help
+format               Run ruff format
+lint                 Run ruff check
+mypy                 Run mypy
+test                 Run pytest
+train                Run train
+feature              Run feature extraction
+build-push           Push ml pipeline image to ECR
+train-docker         Run ml Pipeline
+up                   Docker compose up
+predict              Request prediction to localhost
+predict-ecs          Request prediction to ECS
+healthcheck          Request health check to localhost
+healthcheck-ecs      Request health check to ECS
+request-test         Request prediction with test date
+run-crawl-train-data Run glue crawler for train_data
+run-crawl-predict-log Run glue crawler for predict_log
+run-crawl-train-log  Run glue crawler for train_log
+run-crawl-feature-store Run glue crawler for feature_store
+help                 Show options
+```
+
+
+## 正誤表
+本書の正誤表は本レポジトリの[Wiki](https://github.com/nsakki55/mlops-practice-book/wiki)で公開しています。
+
+
+## お問い合わせ
+コードに関するお問い合わせは本レポジトリの[Issues](https://github.com/nsakki55/mlops-practice-book/issues)を作成してください。

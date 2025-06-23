@@ -30,15 +30,6 @@ train: ## Run train
 feature: ## Run feature extraction
 	uv run src/feature_extraction.py
 
-build: ## Build docker image to ml pipeline
-	docker build . --platform linux/x86_64 -f ./Dockerfile -t $(ECR_REPOSITORY)/$(DOCKER_IMAGE):$(DOCKER_TAG)
-
-push: ## Push ml pipeline image to ECR
-	aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin $(ECR_REPOSITORY)
-	docker tag $(ECR_REPOSITORY)/$(DOCKER_IMAGE):$(DOCKER_TAG) $(ECR_REPOSITORY)/$(DOCKER_IMAGE):$(GIT_SHA)
-	docker push $(ECR_REPOSITORY)/$(DOCKER_IMAGE):$(DOCKER_TAG) && docker push $(ECR_REPOSITORY)/$(DOCKER_IMAGE):$(GIT_SHA)
-
-
 build-push: ## Push ml pipeline image to ECR
 	docker build . --platform linux/x86_64 -f ./Dockerfile -t $(ECR_REPOSITORY)/$(DOCKER_IMAGE):$(DOCKER_TAG)
 	aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin $(ECR_REPOSITORY)
@@ -50,16 +41,10 @@ train-docker: ## Run ml Pipeline
 				$(ECR_REPOSITORY)/$(DOCKER_IMAGE) \
 				uv run src/train.py
 
-up: ## Do docker compose up with hot reload
+up: ## Docker compose up
 	docker compose up
 
-down: ## Do docker compose down
-	docker compose down
-
-logs: ## Tail docker compose logs
-	docker compose logs -f
-
-predict: ## Request prediction
+predict: ## Request prediction to localhost
 	curl -X 'POST' 'http://localhost:${PORT}/predict' \
 	    -H 'accept: application/json' \
 	    -H 'Content-Type: application/json' \
@@ -81,16 +66,16 @@ predict-ecs: ## Request prediction to ECS
 	         "os_version": "latest", \
 	         "is_4g": 1}'
 
-healthcheck: ## Request health check
+healthcheck: ## Request health check to localhost
 	curl -X 'GET' 'http://localhost:${PORT}/healthcheck'
 
-healthcheck-ecs: ## Request health check
+healthcheck-ecs: ## Request health check to ECS
 	curl -X 'GET' '${ALB_DNS}:${PORT}/healthcheck'
 
 request-test: ## Request prediction with test date
 	./request-test.sh
 
-run-crawl-train-data: ## Run glue crawler for train data
+run-crawl-train-data: ## Run glue crawler for train_data
 	aws glue start-crawler --name mlops_train_data_crawler
 
 run-crawl-predict-log: ## Run glue crawler for predict_log
