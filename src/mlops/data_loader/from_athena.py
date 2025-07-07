@@ -4,7 +4,7 @@ from datetime import datetime
 import awswrangler as wr
 import pandas as pd
 
-from mlops.const import ATHENA_DATABASE
+from mlops.const import GLUE_DATABASE
 
 logger = logging.getLogger(__name__)
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
@@ -34,7 +34,7 @@ def compose_sql(
     return sql
 
 
-def extract_dataframe_from_athena(sql: str, database: str = ATHENA_DATABASE) -> pd.DataFrame:
+def extract_dataframe_from_athena(sql: str, database: str = GLUE_DATABASE) -> pd.DataFrame:
     logger.info(f"Start extracting data from Athena. {sql=}, {database=}.")
     df = wr.athena.read_sql_query(sql, database=database, ctas_approach=False)
     assert len(df) != 0

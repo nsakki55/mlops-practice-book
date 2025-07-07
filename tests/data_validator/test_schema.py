@@ -1,8 +1,8 @@
 import awswrangler as wr
 import pytest
 
+from mlops.const import GLUE_DATABASE
 from mlops.data_validator import IMPRESSION_LOG_SCHEMA, MST_ITEM_SCHEMA, VIEW_LOG_SCHEMA
-from mlops.const import ATHENA_DATABASE
 
 
 @pytest.mark.integration
@@ -12,7 +12,7 @@ from mlops.const import ATHENA_DATABASE
 def test_schema_validation(schema):
     sql = f"SELECT * FROM {schema.name} LIMIT 10"
 
-    df = wr.athena.read_sql_query(sql, database=ATHENA_DATABASE, ctas_approach=False)
+    df = wr.athena.read_sql_query(sql, database=GLUE_DATABASE, ctas_approach=False)
 
     assert len(df) > 0, "No data retrieved"
     validated_df = schema.validate(df)

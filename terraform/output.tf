@@ -18,8 +18,8 @@ output "feature_s3_bucket" {
   value       = aws_s3_bucket.feature_store.bucket
 }
 
-output "athena_database" {
-  description = "database name in athena"
+output "glue_database" {
+  description = "database name in glue catalog"
   value       = aws_glue_catalog_database.mlops.name
 }
 
