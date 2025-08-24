@@ -24,13 +24,7 @@ from mlops.evaluation import (
     plot_roc_auc_curve,
 )
 from mlops.middleware import Artifact, set_logger_config
-from mlops.model import (
-    MetaDeta,
-    apply_preprocess,
-    apply_schema,
-    apply_train_test_split,
-    get_model_config,
-)
+from mlops.model import MetaDeta, apply_preprocess, apply_schema, apply_train_test_split, get_model_config
 
 logger = logging.getLogger(__name__)
 
@@ -252,7 +246,7 @@ def main() -> None:
                 "commit_hash": meta_data.git_commit_hash,
                 "image_uri": meta_data.image_uri,
                 "metrics": metrics,
-                "artifact_s3_path": f"{artifact.key_prefix}",
+                "artifact_s3_path": {artifact.key_prefix},
                 "model_s3_path": f"{artifact.key_prefix}/model.pkl",
                 "tag": {
                     "target": "ctr prediction",
