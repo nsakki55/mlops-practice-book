@@ -19,11 +19,13 @@ def compose_sql(
     logger.info(f"Start compose sql. {table=}, {from_datetime=}, {to_datetime=}.")
     sql = f"SELECT * FROM {table}"
 
+    # データ取得の開始時刻と終了時刻からwhere句を作成
     where_clause = []
     if from_datetime is not None:
         where_clause += [f"logged_at >= '{from_datetime.strftime(DATETIME_FORMAT)}'"]
     if to_datetime is not None:
         where_clause += [f"logged_at <= '{to_datetime.strftime(DATETIME_FORMAT)}'"]
+    # 指定したwhere句を追加
     if additional_where_clause:
         where_clause += [additional_where_clause]
     if where_clause:

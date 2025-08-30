@@ -1,4 +1,5 @@
 locals {
+  # 自分のGitHubリポジトリ名を設定する
   github_repository = "<your-github-username>/<your-repository-name>"
 }
 
