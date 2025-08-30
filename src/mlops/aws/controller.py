@@ -166,13 +166,11 @@ class OnlineFeatureStoreDynamoDB:
             return record
 
 
-def run_task(command: list[str], cpu: int, memory: int) -> None:
+def run_task(command: list[str], cpu: int = 1024, memory: int = 2048) -> None:
     command = ["python"] + command
     command.remove("--ecs")
 
     ecs_client = boto3.client("ecs")
-    _cpu = cpu if cpu else 1024
-    _memory = memory if memory else 2048
     response = ecs_client.run_task(
         cluster="mlops-ecs",
         taskDefinition="train-experiment",
@@ -186,13 +184,13 @@ def run_task(command: list[str], cpu: int, memory: int) -> None:
             }
         },
         overrides={
-            "cpu": str(_cpu),
-            "memory": str(_memory),
+            "cpu": str(cpu),
+            "memory": str(memory),
             "containerOverrides": [
                 {
                     "name": "train",
-                    "cpu": _cpu,
-                    "memory": _memory,
+                    "cpu": cpu,
+                    "memory": memory,
                     "command": command,
                 }
             ],
