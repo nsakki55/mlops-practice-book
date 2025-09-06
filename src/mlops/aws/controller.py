@@ -180,7 +180,7 @@ def run_task(command: list[str], cpu: int = 1024, memory: int = 2048) -> None:
             "awsvpcConfiguration": {
                 "subnets": [PUBLIC_SUBNET_1A],
                 "securityGroups": [TRAIN_SECURITY_GROUP],
-                "assignPublicIp": "DISABLED",
+                "assignPublicIp": "ENABLED",
             }
         },
         overrides={
