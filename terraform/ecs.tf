@@ -170,8 +170,8 @@ resource "aws_ecs_service" "predict_api_sub" {
 }
 
 resource "aws_appautoscaling_target" "predict_api_main" {
-  min_capacity       = 0
-  max_capacity       = 1
+  min_capacity       = 1
+  max_capacity       = 5 
   resource_id        = "service/${aws_ecs_cluster.mlops.name}/${aws_ecs_service.predict_api_main.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -195,8 +195,8 @@ resource "aws_appautoscaling_policy" "predict_api_main" {
 }
 
 resource "aws_appautoscaling_target" "predict_api_sub" {
-  min_capacity       = 0
-  max_capacity       = 1
+  min_capacity       = 1
+  max_capacity       = 5
   resource_id        = "service/${aws_ecs_cluster.mlops.name}/${aws_ecs_service.predict_api_sub.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -225,7 +225,7 @@ resource "aws_appautoscaling_scheduled_action" "predict_api_main" {
   service_namespace  = "ecs"
   resource_id        = "service/${aws_ecs_cluster.mlops.name}/${aws_ecs_service.predict_api_main.name}"
   scalable_dimension = "ecs:service:DesiredCount"
-  schedule           = "cron(* */2 * * ? *)"
+  schedule           = "cron(0 0 * * * ?)"
 
   scalable_target_action {
     min_capacity = 0
@@ -238,7 +238,7 @@ resource "aws_appautoscaling_scheduled_action" "predict_api_sub" {
   service_namespace  = "ecs"
   resource_id        = "service/${aws_ecs_cluster.mlops.name}/${aws_ecs_service.predict_api_sub.name}"
   scalable_dimension = "ecs:service:DesiredCount"
-  schedule           = "cron(* */2 * * ? *)"
+  schedule           = "cron(0 0 * * * ?)"
 
   scalable_target_action {
     min_capacity = 0
