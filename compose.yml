@@ -7,10 +7,10 @@ services:
     restart: always
     command: uv run python src/predictor.py
     environment:
-      - AWS_PROFILE
-      - MODEL_NAME
-      - MODEL_VERSION
-      - FEATURE_VERSION
+      - AWS_PROFILE=mlops-practice
+      - MODEL_NAME=sgd_classifier_ctr
+      - MODEL_VERSION=latest
+      - FEATURE_VERSION=latest
     ports:
       - 8080:8080
     volumes:
