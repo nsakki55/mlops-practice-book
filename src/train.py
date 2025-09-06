@@ -35,7 +35,9 @@ def datetime_type(datetime_str: str) -> datetime:
 
 def load_options() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="ML pipeline arguments")
-    parser.add_argument("-m", "--model_name", type=str, default="sgd_classifier_ctr")
+    parser.add_argument(
+        "-m", "--model_name", type=str, default="sgd_classifier_ctr", choices=["sgd_classifier_ctr", "lightgbm_ctr"]
+    )
     parser.add_argument("-t", "--to_datetime", type=datetime_type, default="2018-12-10 00:00:00")
     parser.add_argument("--ecs", action="store_true")
     parser.add_argument("--cpu", type=int, default=None)
