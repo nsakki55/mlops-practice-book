@@ -37,3 +37,11 @@ resource "aws_s3_bucket" "predict_api" {
     Name = "mlops-predict-api-bucket"
   }
 }
+
+resource "aws_s3_bucket" "athena_output" {
+  bucket_prefix = "mlops-athena-output-"
+
+  tags = {
+    Name = "mlops-athena-output-bucket"
+  }
+}

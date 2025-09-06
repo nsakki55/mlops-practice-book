@@ -38,7 +38,7 @@ def compose_sql(
 
 def extract_dataframe_from_athena(sql: str, database: str = GLUE_DATABASE) -> pd.DataFrame:
     logger.info(f"Start extracting data from Athena. {sql=}, {database=}.")
-    df = wr.athena.read_sql_query(sql, database=database, ctas_approach=False)
+    df = wr.athena.read_sql_query(sql, database=database, ctas_approach=False, workgroup="mlops")
     assert len(df) != 0
 
     logger.info(f"Finish extracting data from Athena. {len(df)=}.")
