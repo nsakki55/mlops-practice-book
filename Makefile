@@ -31,9 +31,9 @@ feature: ## Run feature extraction
 	uv run src/feature_extraction.py
 
 build-push: ## Push ml pipeline image to ECR
-	docker build . --platform linux/x86_64 -f ./Dockerfile -t $(ECR_REPOSITORY)/$(DOCKER_IMAGE):$(DOCKER_TAG)
+	docker build . --platform linux/x86_64 -f ./Dockerfile -t $(ECR_REPOSITORY)/$(DOCKER_IMAGE):$(DOCKER_TAG) -t $(ECR_REPOSITORY)/$(DOCKER_IMAGE):local
 	aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin $(ECR_REPOSITORY)
-	docker push $(ECR_REPOSITORY)/$(DOCKER_IMAGE):$(DOCKER_TAG)
+	docker push $(ECR_REPOSITORY)/$(DOCKER_IMAGE) --all-tags
 
 train-docker: ## Run ml Pipeline
 	docker container run -it -v $(HOME)/.aws/credentials:/root/.aws/credentials:ro \
