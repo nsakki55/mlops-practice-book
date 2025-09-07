@@ -115,11 +115,31 @@ help                    Show options
 ```
 
 ## リソース削除
-本書のTerraformで作成したAWSリソースを削除する場合、terraform destroy コマンドを実行します。  
-terraform destroyコマンドを実行する場合、S3バケットにファイル・ECRのイメージが存在するとエラーとなるため、AWSコンソールから事前に削除しておきます。
+### 1. S3バケットのファイルを削除する
+AWSコンソール画面からS3のページを開き、ファイルを削除したいS3バケットを選択し【空にする】を実行します。  
+本書のTerraformで作成した、tfstateを保存するバケット以外を空にしてください。  
+筆者の環境での本書のTerraformで作成したS3バケットの一覧です。
+- mlops-athena-output-20250903144044649000000001
+- mlops-data-20250903144046588400000005
+- mlops-feature-store-20250903144046734200000006
+- mlops-model-20250903144044650200000002
+- mlops-predict-api-20250903144044654800000003
+
+### 2. ECRのイメージを削除する
+AWSコンソール画面からECRのページを開き、本書で作成したリポジトリのイメージを全て削除します。  
+本書で作成するリポジトリは、以下2つのリポジトリです。
+- fluentbit
+- mlops-practice
+
+### 3. Terraform Destroyを実行
+本書のTerraformで作成したAWSリソースを削除するには、terraform destroy コマンドを実行します。  
 ```
 $ terraform destroy
 ```
+
+### 4. tfstate保存用のS3バケットを削除する
+本書のTerraformのtfstate保存用に手動作成したS3バケットを削除します。  
+本書ではmlops-terraform-tfstate-{suffix}という名前で、tfstate保存用のS3バケットを作成しています。
 
 
 ## 正誤表
