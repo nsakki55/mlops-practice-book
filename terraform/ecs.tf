@@ -190,7 +190,7 @@ resource "aws_appautoscaling_policy" "predict_api_main" {
     }
     scale_in_cooldown  = 10
     scale_out_cooldown = 10
-    target_value       = 90
+    target_value       = 50
   }
 }
 
@@ -215,7 +215,7 @@ resource "aws_appautoscaling_policy" "predict_api_sub" {
     }
     scale_in_cooldown  = 10
     scale_out_cooldown = 10
-    target_value       = 90
+    target_value       = 50
   }
 }
 
