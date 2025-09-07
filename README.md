@@ -20,7 +20,7 @@
 ## データセット
 
 Kaggleデータセットの[Context Ad Clicks Dataset](https://www.kaggle.com/datasets/arashnic/ctrtest/data)を一部改変したデータセット使用します。  
-本レポジトリのdata.zipを使用します。本書で使用するデータには、`impression_log.csv`、`view_log.csv`、`mst_item.csv`の3つのcsvファイルが含まれます。
+本レポジトリの[data.zip](./data.zip)を使用します。本書で使用するデータには、`impression_log.csv`、`view_log.csv`、`mst_item.csv`の3つのcsvファイルが含まれます。
 
 ## 事前準備
 
