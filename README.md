@@ -114,6 +114,13 @@ run-crawl-feature-store Run glue crawler for feature_store
 help                    Show options
 ```
 
+## リソース削除
+本書のTerraformで作成したAWSリソースを削除する場合、terraform destroy コマンドを実行します。  
+terraform destroyコマンドを実行する場合、S3バケットにファイル・ECRのイメージが存在するとエラーとなるため、AWSコンソールから事前に削除しておきます。
+```
+$ terraform destroy
+```
+
 
 ## 正誤表
 本書の正誤表は[errata.md](https://github.com/nsakki55/mlops-practice-book/blob/main/errata.md)で公開しています。
