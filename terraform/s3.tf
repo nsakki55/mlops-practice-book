@@ -22,14 +22,6 @@ resource "aws_s3_bucket" "feature_store" {
   }
 }
 
-resource "aws_s3_bucket" "athena" {
-  bucket_prefix = "mlops-athena-"
-
-  tags = {
-    Name = "mlops-athena-bucket"
-  }
-}
-
 resource "aws_s3_bucket" "predict_api" {
   bucket_prefix = "mlops-predict-api-"
 
