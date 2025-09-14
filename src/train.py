@@ -128,7 +128,7 @@ def main() -> None:
     y_pred = model.predict_proba(X=df_test[model_config.feature_columns])
     y_test = df_test[model_config.target]
     test_metrics = calculate_metrics(
-        y_true=df_test[model_config.target],
+        y_true=y_test,
         y_pred=y_pred,
     )
     metrics = {"train": train_metrics, "test": test_metrics}
@@ -142,7 +142,7 @@ def main() -> None:
         y_pred=y_pred,
     )
     fig_histgram = plot_histgram(
-        y_true=df_test[model_config.target],
+        y_true=y_test,
         y_pred=y_pred,
     )
 
