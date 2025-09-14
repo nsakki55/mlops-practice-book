@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -22,12 +22,12 @@ jobs:
           aws-region: "ap-northeast-1"
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: "pyproject.toml"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@v6
         with:
           version: "0.6.12"
 
@@ -80,7 +80,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
