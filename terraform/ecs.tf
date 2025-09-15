@@ -113,7 +113,10 @@ resource "aws_ecs_service" "predict_api_main" {
     container_port   = 8080
   }
 
-  depends_on = [aws_ecs_task_definition.predict_api_main]
+  depends_on = [
+    aws_ecs_task_definition.predict_api_main,
+    aws_lb_target_group.predict_api_main
+  ]
 }
 
 
@@ -166,7 +169,10 @@ resource "aws_ecs_service" "predict_api_sub" {
     container_port   = 8080
   }
 
-  depends_on = [aws_ecs_task_definition.predict_api_sub]
+  depends_on = [
+    aws_ecs_task_definition.predict_api_sub,
+    aws_lb_target_group.predict_api_sub
+  ]
 }
 
 resource "aws_appautoscaling_target" "predict_api_main" {

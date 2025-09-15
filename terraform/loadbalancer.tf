@@ -55,6 +55,11 @@ resource "aws_lb_listener" "predict_api" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.predict_api_main.arn
   }
+
+  depends_on = [
+    aws_lb_target_group.predict_api_main,
+    aws_lb_target_group.predict_api_sub
+  ]
 }
 
 resource "aws_lb_listener_rule" "predict_api" {
