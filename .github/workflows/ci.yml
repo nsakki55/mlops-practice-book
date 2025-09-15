@@ -1,8 +1,8 @@
 name: continuous integration
 
 on:
-  push:
-    branches: [main]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   python-lint-test:
