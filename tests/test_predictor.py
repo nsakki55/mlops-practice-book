@@ -20,7 +20,11 @@ def test_prediction_endpoint():
         "is_4g": 1,
     }
 
-    response = requests.post("http://localhost:8080/predict", headers={"Content-Type": "application/json"}, json=request_data)
+    response = requests.post(
+        "http://localhost:8080/predict",
+        headers={"Content-Type": "application/json"},
+        json=request_data,
+    )
 
     assert response.status_code == 200
     response_data = response.json()
