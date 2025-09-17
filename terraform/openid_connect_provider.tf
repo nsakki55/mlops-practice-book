@@ -155,7 +155,7 @@ data "aws_iam_policy_document" "github_actions_workflow" {
 
 # GitHub Actions Role
 resource "aws_iam_role" "github_actions" {
-  name = "mlops-github-actions-role"
+  name               = "mlops-github-actions-role"
   assume_role_policy = data.aws_iam_policy_document.github_actions.json
 
   tags = {

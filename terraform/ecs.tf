@@ -177,7 +177,7 @@ resource "aws_ecs_service" "predict_api_sub" {
 
 resource "aws_appautoscaling_target" "predict_api_main" {
   min_capacity       = 1
-  max_capacity       = 5 
+  max_capacity       = 5
   resource_id        = "service/${aws_ecs_cluster.mlops.name}/${aws_ecs_service.predict_api_main.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
