@@ -48,17 +48,17 @@ jobs:
 
       - name: Setup AWS credentials profile
         run: |
-          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile github-actions
-          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile github-actions
-          aws configure set aws_session_token $AWS_SESSION_TOKEN --profile github-actions
-          aws configure set region $AWS_REGION --profile github-actions
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile mlops-practice
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile mlops-practice
+          aws configure set aws_session_token $AWS_SESSION_TOKEN --profile mlops-practice
+          aws configure set region $AWS_REGION --profile mlops-practice
 
       - name: Start Docker Compose
         env:
           MODEL_NAME: sgd_classifier_ctr
           MODEL_VERSION: latest
           FEATURE_VERSION: latest
-          AWS_PROFILE: github-actions
+          AWS_PROFILE: mlops-practice
         run: docker compose up --build -d
 
       - name: Run integration test
