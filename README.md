@@ -7,7 +7,7 @@
 | 書籍 | 実践MLOps 作って理解する機械学習システムの構築と運用 |
 | URL | TODO: add url link            |
 | ISBN | TODO: add ISBN link           |
-| 正誤表 | TODO: add fixed record        |
+| 正誤表 | [errata.md](https://github.com/nsakki55/mlops-practice-book/blob/main/errata.md) |
 
 
 ## 本書で作成する機械学習システム
