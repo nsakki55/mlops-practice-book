@@ -23,6 +23,16 @@ Kaggleデータセットの[Context Ad Clicks Dataset](https://www.kaggle.com/da
 本レポジトリの[data.zip](./data.zip)を使用します。本書で使用するデータには、`impression_log.csv`、`view_log.csv`、`mst_item.csv`の3つのcsvファイルが含まれます。
 
 ## 事前準備
+本書執筆時の各ツールのバージョン・実行環境は以下となっています。
+
+| ツール名 | バージョン |
+| --- | --- |
+| OS | macOS Sequoia 15 |
+| Python | 3.12.5 |
+| Docker | 28.3.3 |
+| Docker Desktop | 4.45.0 |
+| Terraform | 1.13.2 |
+| AWS CLI | 2.30.1 |
 
 **サンプルコードの取得**  
 ```zsh
@@ -37,7 +47,7 @@ $ cd mlops-practice-book
 ```zsh
 
 $ docker --version
-Docker version 28.0.4, build b8034c0
+Dcker version 28.3.3, build 980b856
 ```
 
 **uv**  
@@ -61,14 +71,14 @@ $ uv python pin 3.12
 
 ```zsh
 $ asdf plugin add terraform
-$ asdf install terraform 1.11.3
-$ asdf local terraform 1.11.3
+$ asdf install terraform 1.13.2
+$ asdf local terraform 1.13.2
 ```
 </details>
 
 ```zsh
 $ terraform --version
-Terraform v1.11.3
+Terraform v1.13.2
 on darwin_amd64
 ```
 
@@ -79,14 +89,14 @@ on darwin_amd64
 
 ```zsh
 $ asdf plugin add awscli
-$ asdf install awscli 2.27.35
-$ asdf local awscli 2.27.35 
+$ asdf install awscli 2.30.1
+$ asdf local awscli 2.30.1
 ```
 </details>
 
 ```zsh
 $ aws --version
-aws-cli/2.9.2 Python/3.9.11 Darwin/24.2.0 exe/x86_64 prompt/off
+aws-cli/2.30.1 Python/3.13.7 Darwin/24.2.0 exe/x86_64
 ```
 
 ## 動作確認
