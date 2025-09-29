@@ -5,8 +5,8 @@
 | 項目 |                               |
 |------|-------------------------------|
 | 書籍 | 実践MLOps 作って理解する機械学習システムの構築と運用 |
-| URL | TODO: add url link            |
-| ISBN | TODO: add ISBN link           |
+| URL | https://www.ohmsha.co.jp/book/9784274233982/           |
+| ISBN | 978-4-274-23398-2           |
 | 正誤表 | [errata.md](https://github.com/nsakki55/mlops-practice-book/blob/main/errata.md) |
 
 
